@@ -10,4 +10,10 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  dateTime: Date;
+
+  @Column({ nullable: true })
+  isActive: boolean;
 }

@@ -14,7 +14,7 @@ export class AuthService {
     const user = await this.userService.findOneBy(username);
 
     if (decryptWithAES(user?.password) !== pass) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Credentials not found!');
     }
     const payload = { sub: user.id, username: user.username };
     return {
