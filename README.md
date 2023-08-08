@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+POINT OF SALE AND INVENTORY SYSTEM
 
 ## Installation
 
