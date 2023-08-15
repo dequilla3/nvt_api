@@ -1,17 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { Product } from './product.entity';
+import { Sku } from './sku.entity';
 
 @Entity()
 export class ProductUnit {
   @PrimaryGeneratedColumn()
-  productUnitId: number;
+  id: number;
 
   @Column()
   unit: string;
 
-  @OneToMany(() => Product, (product) => product.productUnit)
-  products: Product[];
+  @OneToMany(() => Sku, (sku) => sku.productUnit)
+  skus: Sku[];
 
   @Column({ type: 'timestamptz' })
   dateTime: Date;

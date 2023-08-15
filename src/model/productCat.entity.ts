@@ -4,10 +4,10 @@ import { Product } from './product.entity';
 @Entity()
 export class ProductCat {
   @PrimaryGeneratedColumn()
-  productCatId: number;
+  id: number;
 
   @Column()
-  producCattName: string;
+  producCatName: string;
 
   @Column()
   skuCode: string;
@@ -16,7 +16,7 @@ export class ProductCat {
   unit: string;
 
   @OneToMany(() => Product, (product) => product.productCat)
-  products: ProductCat[];
+  products: Product[];
 
   @Column()
   isActive: boolean;

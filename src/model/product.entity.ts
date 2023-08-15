@@ -2,27 +2,30 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
+  ManyToOne,
   OneToOne,
   JoinColumn,
-  ManyToOne,
 } from 'typeorm';
 import { ProductCat } from './productCat.entity';
-import { ProductUnit } from './productUnit.entity';
+import { Sku } from './sku.entity';
 
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
-  productId: number;
+  id: number;
+
+  @Column()
+  productCode: string;
 
   @Column()
   productName: string;
 
   @ManyToOne(() => ProductCat, (prodCat) => prodCat.products)
+  @JoinColumn()
   productCat: ProductCat;
 
-  @ManyToOne(() => ProductUnit, (productUnit) => productUnit.products)
-  productUnit: ProductUnit;
+  @OneToOne(() => Sku, (sku) => sku.product)
+  sku: Sku;
 
   @Column({ type: 'timestamptz' })
   dateTime: Date;
