@@ -13,9 +13,9 @@ export class ProductUnit {
   @OneToMany(() => Sku, (sku) => sku.productUnit)
   skus: Sku[];
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   dateTime: Date;
 
-  @Column()
+  @Column({ nullable: true })
   isActive: boolean;
 }

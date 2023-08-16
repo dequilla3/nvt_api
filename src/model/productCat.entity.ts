@@ -7,17 +7,11 @@ export class ProductCat {
   id: number;
 
   @Column()
-  producCatName: string;
-
-  @Column()
-  skuCode: string;
-
-  @Column()
-  unit: string;
+  productCatName: string;
 
   @OneToMany(() => Product, (product) => product.productCat)
   products: Product[];
 
-  @Column()
+  @Column({ nullable: true })
   isActive: boolean;
 }

@@ -27,9 +27,9 @@ export class Product {
   @OneToOne(() => Sku, (sku) => sku.product)
   sku: Sku;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   dateTime: Date;
 
-  @Column()
+  @Column({ nullable: true })
   isActive: boolean;
 }

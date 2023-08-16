@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DocModule } from 'src/model/module.entity';
 import { Repository } from 'typeorm';
@@ -10,12 +10,30 @@ export class DocmoduleService {
     private docModuleRepository: Repository<DocModule>,
   ) {}
 
-  async findAll() {
+  findAll() {
     return this.docModuleRepository.find();
   }
 
+  findByCode(moduleCode: string) {
+    return this.docModuleRepository.findOneBy({ moduleCode });
+  }
+
   async create(docModule: Partial<DocModule>) {
-    const create = this.docModuleRepository.create(docModule);
-    return this.docModuleRepository.save(create); //persist
+    if (!docModule.moduleCode) {
+      throw new HttpException('Module Code is Empty!', HttpStatus.BAD_REQUEST);
+    }
+    if (!docModule.moduleName) {
+      throw new HttpException('Module Name is Empty!', HttpStatus.BAD_REQUEST);
+    }
+    if (await this.findByCode(docModule.moduleCode)) {
+      throw new HttpException(
+        'Module Code already exists!',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    //persist
+    return this.docModuleRepository.save(
+      this.docModuleRepository.create(docModule),
+    );
   }
 }

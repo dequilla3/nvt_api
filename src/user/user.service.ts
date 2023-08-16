@@ -36,7 +36,7 @@ export class UserService {
 
     user.password = encryptWithAES(user.password);
 
-    this.userRepository.save(this.userRepository.create(user));
+    this.userRepository.save(this.userRepository.create(user)); 
     return 'Successfully Saved!';
   }
 }
