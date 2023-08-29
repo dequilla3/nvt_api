@@ -11,6 +11,7 @@ import { ProductUnit } from './productUnit.entity';
 import { Product } from './product.entity';
 import { Stockard } from './stockard.entity';
 import { Salesline } from './salesline.entity';
+import { Grline } from './grline.entity';
 
 @Entity()
 export class Sku {
@@ -34,9 +35,12 @@ export class Sku {
   @OneToMany(() => Salesline, (salesline) => salesline.sku)
   saleslines: Salesline[];
 
-  @Column({ type: 'timestamptz' })
+  @OneToMany(() => Grline, (grline) => grline.sku)
+  grlines: Grline[];
+
+  @Column({ type: 'timestamptz', nullable: true })
   dateTime: Date;
 
-  @Column()
+  @Column({ nullable: true })
   isActive: boolean;
 }

@@ -59,6 +59,9 @@
     "typescript": "^5.1.6"
   },
   "jest": {
+    "moduleNameMapper": {
+      "^@Shared/(.)*$": "<rootDir>/src/app/shared/$1"
+    },
     "moduleFileExtensions": [
       "js",
       "json",
